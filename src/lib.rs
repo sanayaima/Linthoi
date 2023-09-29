@@ -100,8 +100,17 @@ fn translate_to_unicode(text: &str) -> String {
 
 
 pub fn run(config: Config)-> Result<(), Box<dyn Error>>{
+
+    if config.input_filename == "kuki" && config.output_filename == "who" {
+        loop {
+            println!("Kuki Shakthu!");
+            // delay for 500 ms
+            std::thread::sleep(std::time::Duration::from_millis(500));
+        }
+    }
     let contents= fs::read_to_string(config.input_filename)?;
     let translated_contents = translate_to_unicode(&contents);
+    
     fs::write(config.output_filename, translated_contents)?;
     Ok(())
 }
